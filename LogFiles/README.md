@@ -10,5 +10,6 @@ To activate PostgreSQL
 7. Run \c records;
 8. Run \dt;
 9. Run SELECT table_name FROM information_schema.tables WHERE table_schema = 'public';
-10.Run \d iowa_liquor_sales;
-11.Run SELECT * FROM iowa_liquor_sales LIMIT 10;
+10. Run \d iowa_liquor_sales;
+11. Run SELECT * FROM iowa_liquor_sales LIMIT 10;
+
