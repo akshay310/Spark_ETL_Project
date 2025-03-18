@@ -19,7 +19,7 @@ def write_to_parquet(df: DataFrame, output_path: str):
     try:
         if df.count() > 0:
             logging.info(f"Writing {df.count()} records to parquet file at {output_path}")
-            df.coalesce(1).write.mode("overwrite").parquet(output_path)
+            df.write.mode("overwrite").parquet(output_path)
             logging.info(f"Bad records successfully written to: {output_path}")
         else:
             logging.info("No bad records found, skipping Parquet write.")
@@ -36,7 +36,6 @@ def write_to_postgres(df: DataFrame, table_name: str):
     :param table_name: Name of the PostgreSQL table.
     """
     try:
-        good_records_df.show(5)
         logging.info(f"Good Records Schema:\n{df.printSchema()}")
         logging.info(f"Good Records Count: {df.count()}")
         logging.info(f"Checking if table {table_name} exists in PostgreSQL.")
@@ -55,7 +54,7 @@ if __name__ == "__main__":
     from quality_check import validate_data
 
     file_path = "/home/akshay/Iowa_Liquor_Sales.csv.csv"
-    parquet_output_path = "/home/akshay/parquet/bad_records.parquet"
+    parquet_output_path = "/home/akshay/bad_records.parquet"
     postgres_table_name = "public.iowa_liquor_sales"
 
     # Load data and retrieve the SparkSession
@@ -71,4 +70,3 @@ if __name__ == "__main__":
     write_to_postgres(good_records_df, table_name=postgres_table_name)
 
     
-
