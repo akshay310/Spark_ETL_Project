@@ -1,0 +1,20 @@
+(spark_ikart_env) akshay@LAPTOP-OTII9OR8:~$ python project/write_data.py
+25/03/17 11:38:13 WARN Utils: Your hostname, LAPTOP-OTII9OR8 resolves to a loopback address: 127.0.1.1; using 172.30.49.65 instead (on interface eth0)
+25/03/17 11:38:13 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
+25/03/17 11:38:15 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+25/03/17 11:38:16 WARN Utils: Service 'SparkUI' could not bind on port 4040. Attempting port 4041.
+2025-03-17 11:38:16,979 - INFO - Spark session created successfully.
+2025-03-17 11:38:29,946 - INFO - Data loaded successfully.                      
+2025-03-17 11:39:01,698 - WARNING - check_store_location check FAILED.          
+2025-03-17 11:39:01,699 - INFO - check_unique_invoice check PASSED.
+2025-03-17 11:39:01,699 - INFO - check_date_format check PASSED.
+2025-03-17 11:39:01,699 - INFO - check_sale_dollars check PASSED.
+2025-03-17 11:39:01,699 - INFO - check_bottles_sold check PASSED.
+2025-03-17 11:39:26,861 - INFO - Bad records found. Good: 2474972 | Bad: 330335 
+2025-03-17 11:39:27,239 - INFO - Writing 330335 records to parquet file at /home/akshay/bad_records.parquet
+2025-03-17 11:39:32,661 - INFO - Bad records successfully written to: /home/akshay/bad_records.parquet
+2025-03-17 11:39:48,492 - INFO - Writing 2474972 records to PostgreSQL table: iowa_liquor_sales
+2025-03-17 11:40:48,878 - INFO - Good records successfully written to PostgreSQL!
+2025-03-17 11:40:48,965 - INFO - Closing down clientserver connection

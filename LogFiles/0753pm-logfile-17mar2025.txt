@@ -1,0 +1,60 @@
+(spark_ikart_env) akshay@LAPTOP-OTII9OR8:~$ python3 project/write_data.py
+25/03/17 14:18:06 WARN Utils: Your hostname, LAPTOP-OTII9OR8 resolves to a loopback address: 127.0.1.1; using 172.26.194.5 instead (on interface eth0)
+25/03/17 14:18:06 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
+25/03/17 14:18:07 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+2025-03-17 14:18:10,046 - INFO - Spark session created successfully.
+2025-03-17 14:18:25,668 - INFO - Data loaded successfully.                      
+2025-03-17 14:18:58,983 - WARNING - check_store_location check FAILED.          
+2025-03-17 14:18:58,983 - INFO - check_unique_invoice check PASSED.
+2025-03-17 14:18:58,984 - INFO - check_date_format check PASSED.
+2025-03-17 14:18:58,984 - INFO - check_sale_dollars check PASSED.
+2025-03-17 14:18:58,984 - INFO - check_bottles_sold check PASSED.
+2025-03-17 14:19:25,294 - INFO - Bad records found. Good: 2474972 | Bad: 330335 
+2025-03-17 14:19:25,624 - INFO - Writing 330335 records to parquet file at /home/akshay/bad_records.parquet
+2025-03-17 14:19:31,023 - INFO - Bad records successfully written to: /home/akshay/bad_records.parquet
++-----------------------+----------+------------+--------------------+-----------------+---------------+--------+--------------------+-------------+-------+---------+--------------------+-------------+-----------------+-----------+--------------------+----+----------------+-----------------+-------------------+------------+------------+------------------+-------------------+
+|invoice_and_item_number|      date|store_number|          store_name|          address|           city|zip_code|      store_location|county_number| county| category|       category_name|vendor_number|      vendor_name|item_number|    item_description|pack|bottle_volume_ml|state_bottle_cost|state_bottle_retail|bottles_sold|sale_dollars|volume_sold_liters|volume_sold_gallons|
++-----------------------+----------+------------+--------------------+-----------------+---------------+--------+--------------------+-------------+-------+---------+--------------------+-------------+-----------------+-----------+--------------------+----+----------------+-----------------+-------------------+------------+------------+------------------+-------------------+
+|        INV-33190300025|2021-01-04|        5905|Aj's Jack & Jill ...|    115 E Main St|    West Branch| 52358.0|POINT (-91.343394...|           16|  CEDAR|1022100.0|       Mixto Tequila|        395.0|          PROXIMO|      89196|Jose Cuervo Espec...|  12|             750|            11.07|              16.61|           3|       49.83|              2.25|               0.59|
+|        INV-33172200073|2021-01-04|        2509|Hy-Vee / Drugtown...|   1520 6th St SW|   Cedar Rapids| 52404.0|POINT (-91.67706 ...|           57|   LINN|1081400.0|   American Schnapps|        434.0|        LUXCO INC|      81207|Paramount Pepperm...|  12|            1000|             4.28|               6.42|           3|       19.26|               3.0|               0.79|
+|        INV-33189000004|2021-01-04|        3920|Smokin' Joe's #11...|1606 Camanche Ave|        Clinton| 52732.0|POINT (-90.204748...|           23|CLINTON|1032100.0|     Imported Vodkas|        370.0|PERNOD RICARD USA|      34003|Absolut Swedish V...|  24|             200|             2.99|               4.49|           2|        8.98|               0.4|                0.1|
+|        INV-33175800062|2021-01-04|        5092|Kum & Go #3035 / ...|    7265 Vista Dr|West Des Moines| 50265.0|POINT (-93.807839...|           77|   POLK|1032100.0|     Imported Vodkas|        370.0|PERNOD RICARD USA|      34001|Absolut Swedish V...|  10|              50|             7.92|              11.88|           4|       47.52|               0.2|               0.05|
+|        INV-33187700026|2021-01-04|        5106|Randy's Neighborh...|     622 10th  St|         DeWitt| 52742.0|POINT (-90.540132...|           23|CLINTON|1032200.0|Imported Flavored...|        370.0|PERNOD RICARD USA|      64011|Absolut Juice Edi...|   6|             750|             9.99|              14.99|           1|       14.99|              0.75|               0.19|
++-----------------------+----------+------------+--------------------+-----------------+---------------+--------+--------------------+-------------+-------+---------+--------------------+-------------+-----------------+-----------+--------------------+----+----------------+-----------------+-------------------+------------+------------+------------------+-------------------+
+only showing top 5 rows
+
+root
+ |-- invoice_and_item_number: string (nullable = true)
+ |-- date: date (nullable = true)
+ |-- store_number: integer (nullable = true)
+ |-- store_name: string (nullable = true)
+ |-- address: string (nullable = true)
+ |-- city: string (nullable = true)
+ |-- zip_code: double (nullable = true)
+ |-- store_location: string (nullable = true)
+ |-- county_number: integer (nullable = true)
+ |-- county: string (nullable = true)
+ |-- category: double (nullable = true)
+ |-- category_name: string (nullable = true)
+ |-- vendor_number: double (nullable = true)
+ |-- vendor_name: string (nullable = true)
+ |-- item_number: integer (nullable = true)
+ |-- item_description: string (nullable = true)
+ |-- pack: integer (nullable = true)
+ |-- bottle_volume_ml: integer (nullable = true)
+ |-- state_bottle_cost: double (nullable = true)
+ |-- state_bottle_retail: double (nullable = true)
+ |-- bottles_sold: integer (nullable = true)
+ |-- sale_dollars: double (nullable = true)
+ |-- volume_sold_liters: double (nullable = true)
+ |-- volume_sold_gallons: double (nullable = true)
+
+2025-03-17 14:19:46,772 - INFO - Good Records Schema:
+None
+2025-03-17 14:20:00,958 - INFO - Good Records Count: 2474972                    
+2025-03-17 14:20:00,959 - INFO - Checking if table public.iowa_liquor_sales exists in PostgreSQL.
+2025-03-17 14:20:16,463 - INFO - Writing 2474972 records to PostgreSQL table: public.iowa_liquor_sales
+2025-03-17 14:21:26,302 - INFO - Good records successfully written to PostgreSQL!
+2025-03-17 14:21:26,421 - INFO - Closing down clientserver connection
