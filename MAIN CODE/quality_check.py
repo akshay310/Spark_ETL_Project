@@ -1,5 +1,5 @@
 """
-Module to perform data quality checks using Great Expectations 
+Module to perform data quality checks using Great Expectations and push the bad records to a parquet file.
 """
 
 import great_expectations as ge
@@ -75,4 +75,3 @@ if __name__ == "__main__":
         bad_records_df.coalesce(1).write.mode("overwrite").parquet("/home/akshay/bad_records.parquet")
         logging.info("Bad records successfully written to Parquet.")
         logging.info("Good records are ready to be pushed to PostgreSQL database")
-
