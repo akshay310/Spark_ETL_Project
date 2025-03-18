@@ -1,0 +1,28 @@
+akshay@LAPTOP-OTII9OR8:~/PySpark_Project$ /home/akshay/PySpark_Project/spark_ikart_env/bin/python /home/akshay/PySpark_Project/project/data_quality.py
+25/03/14 14:42:03 WARN Utils: Your hostname, LAPTOP-OTII9OR8 resolves to a loopback address: 127.0.1.1; using 172.25.134.240 instead (on interface eth0)
+25/03/14 14:42:03 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+25/03/14 14:42:05 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+25/03/14 14:42:08 WARN Utils: Service 'SparkUI' could not bind on port 4040. Attempting port 4041.
+25/03/14 14:42:08 WARN Utils: Service 'SparkUI' could not bind on port 4041. Attempting port 4042.
+INFO:root:Spark session created successfully.
+INFO:root:Data loaded successfully.                                             
+WARNING:root:❌ store_location check FAILED.                                    
+INFO:root:✅ invoice_unique check PASSED.
+INFO:root:✅ date_format check PASSED.
+INFO:root:✅ sale_dollars_non_negative check PASSED.
+INFO:root:✅ bottles_sold_positive check PASSED.
+INFO:root:Bad records found. Good: 2474972 | Bad: 330335                        
++-----------------------+----------+------------+--------------------+--------------------+------------+--------+--------------------+-------------+-------+---------+--------------------+-------------+-----------------+-----------+--------------------+----+----------------+-----------------+-------------------+------------+------------+------------------+-------------------+
+|invoice_and_item_number|      date|store_number|          store_name|             address|        city|zip_code|      store_location|county_number| county| category|       category_name|vendor_number|      vendor_name|item_number|    item_description|pack|bottle_volume_ml|state_bottle_cost|state_bottle_retail|bottles_sold|sale_dollars|volume_sold_liters|volume_sold_gallons|
++-----------------------+----------+------------+--------------------+--------------------+------------+--------+--------------------+-------------+-------+---------+--------------------+-------------+-----------------+-----------+--------------------+----+----------------+-----------------+-------------------+------------+------------+------------------+-------------------+
+|        INV-33170700030|2021-01-04|        3773|   Benz Distributing|      501 7th Ave SE|Cedar Rapids| 52401.0|POINT (-91.659875...|           57|   LINN|1022100.0|       Mixto Tequila|        434.0|        LUXCO INC|      89387|         Juarez Gold|  12|            1000|             7.83|              11.75|          12|       141.0|              12.0|               3.17|
+|        INV-33177900007|2021-01-04|        2671|Hy-Vee  /  Jefferson|106, W Washington St|   Jefferson| 50129.0|POINT (-94.375508...|           37| GREENE|1031200.0|American Flavored...|        380.0|Phillips Beverage|      41681|       UV Red Cherry|   6|            1750|             11.5|              17.25|           6|       103.5|              10.5|               2.77|
+|        INV-33178300029|2021-01-04|        2593|Hy-Vee Food Store...|905 US Highway 30...|     Carroll| 51401.0|POINT (-94.853591...|           14|CARROLL|1081500.0|          Triple Sec|        434.0|        LUXCO INC|      86251|   Juarez Triple Sec|  12|            1000|             2.42|               3.63|          12|       43.56|              12.0|               3.17|
+|        INV-33189300004|2021-01-04|        4132| Camanche Food Pride|         908 7th Ave|    Camanche| 52730.0|POINT (-90.257535...|           23|CLINTON|1012200.0|     Scotch Whiskies|         35.0|  BACARDI USA INC|       4866|Dewars White Labe...|  12|             750|             13.5|              20.25|           1|       20.25|              0.75|               0.19|
+|        INV-33190500005|2021-01-04|        5240|Casey's General S...|   615, S  Downey St| West Branch| 52358.0|POINT (-91.345441...|           16|  CEDAR|1012100.0|   Canadian Whiskies|        260.0|  DIAGEO AMERICAS|      11290|    Crown Royal Mini|  10|              50|             7.35|              11.03|          10|       110.3|               0.5|               0.13|
++-----------------------+----------+------------+--------------------+--------------------+------------+--------+--------------------+-------------+-------+---------+--------------------+-------------+-----------------+-----------+--------------------+----+----------------+-----------------+-------------------+------------+------------+------------------+-------------------+
+only showing top 5 rows
+
+INFO:py4j.clientserver:Closing down clientserver connection
