@@ -19,7 +19,7 @@ def spark():
     """
     return SparkSession.builder \
         .appName("Pytest-ETL") \
-        .master("local[2]") \
+        .master("local[*]") \
         .config("spark.jars", "/opt/spark/jars/postgresql-42.6.0.jar") \
         .getOrCreate()
 
