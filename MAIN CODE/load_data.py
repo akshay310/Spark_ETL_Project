@@ -1,4 +1,3 @@
-
 """
 Module to load CSV data into a PySpark DataFrame with automatic delimiter and encoding detection.
 """
