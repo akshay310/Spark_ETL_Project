@@ -15,8 +15,12 @@ def get_spark_session(app_name="ETL-Load-Data"):
         spark = (
             SparkSession.builder.appName(app_name)
             .config("spark.sql.shuffle.partitions", "200")
-            .config("spark.executor.memory", "8g")
-            .config("spark.jars", "/opt/spark/jars/postgresql-42.5.4.jar") \
+            .config("spark.executor.memory", "4g") \  
+            .config("spark.driver.memory", "4g") \  
+            .config("spark.executor.memoryOverhead", "1g") \
+            .config("spark.memory.fraction", "0.8") \
+            .config("spark.memory.storageFraction", "0.5") \
+            .config("spark.jars","/opt/spark/jars/postgresql-42.6.0.jar")
             .getOrCreate()
         )
         spark.sparkContext.setLogLevel("ERROR")  # Suppress WARN messages
@@ -47,3 +51,7 @@ def load_data(file_path):
         logging.error(f"Error loading data: {str(e)}")
         raise
 
+if __name__ == "__main__":
+    file_path = "/home/akshay/Iowa_Liquor_Sales.csv.csv"
+    df, spark = load_data(file_path)
+    df.show(5)
