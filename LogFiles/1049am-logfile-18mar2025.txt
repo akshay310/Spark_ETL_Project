@@ -1,0 +1,78 @@
+(spark_ikart_env) akshay@LAPTOP-OTII9OR8:~$ python spark_project/write_data.py
+2025-03-18 05:10:57,932 - INFO - Detected Encoding: ascii
+2025-03-18 05:10:57,933 - INFO - Detected Delimiter: ,
+25/03/18 05:10:59 WARN Utils: Your hostname, LAPTOP-OTII9OR8 resolves to a loopback address: 127.0.1.1; using 172.26.194.5 instead (on interface eth0)
+25/03/18 05:10:59 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
+25/03/18 05:11:00 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+2025-03-18 05:11:02,811 - INFO - Spark session created successfully.
+2025-03-18 05:11:22,216 - INFO - Encoding found : ascii                         
+2025-03-18 05:11:22,217 - INFO - Delimiter found : ,
+2025-03-18 05:11:22,217 - INFO - Data loaded successfully.
+2025-03-18 05:11:46,271 - INFO - Row count: 2805307                             
+2025-03-18 05:12:10,869 - WARNING - check_store_location check FAILED.          
+2025-03-18 05:12:10,877 - INFO - check_unique_invoice check PASSED.
+2025-03-18 05:12:10,877 - INFO - check_date_format check PASSED.
+2025-03-18 05:12:10,877 - INFO - check_sale_dollars check PASSED.
+2025-03-18 05:12:10,877 - INFO - check_bottles_sold check PASSED.
+2025-03-18 05:12:41,811 - INFO - Bad records found. Good: 2474972 | Bad: 330335 
+2025-03-18 05:12:43,651 - INFO - Writing 330335 records to parquet file at /home/akshay/parquet/bad_records.parquet
+2025-03-18 05:12:58,088 - INFO - Bad records successfully written to: /home/akshay/parquet/bad_records.parquet
++-----------------------+----------+------------+--------------------+-----------------+---------------+--------+--------------------+-------------+-------+---------+--------------------+-------------+-----------------+-----------+--------------------+----+----------------+-----------------+-------------------+------------+------------+------------------+-------------------+
+|invoice_and_item_number|      date|store_number|          store_name|          address|           city|zip_code|      store_location|county_number| county| category|       category_name|vendor_number|      vendor_name|item_number|    item_description|pack|bottle_volume_ml|state_bottle_cost|state_bottle_retail|bottles_sold|sale_dollars|volume_sold_liters|volume_sold_gallons|
++-----------------------+----------+------------+--------------------+-----------------+---------------+--------+--------------------+-------------+-------+---------+--------------------+-------------+-----------------+-----------+--------------------+----+----------------+-----------------+-------------------+------------+------------+------------------+-------------------+
+|        INV-33190300025|2021-01-04|        5905|Aj's Jack & Jill ...|    115 E Main St|    West Branch| 52358.0|POINT (-91.343394...|           16|  CEDAR|1022100.0|       Mixto Tequila|        395.0|          PROXIMO|      89196|Jose Cuervo Espec...|  12|             750|            11.07|              16.61|           3|       49.83|              2.25|               0.59|
+|        INV-33172200073|2021-01-04|        2509|Hy-Vee / Drugtown...|   1520 6th St SW|   Cedar Rapids| 52404.0|POINT (-91.67706 ...|           57|   LINN|1081400.0|   American Schnapps|        434.0|        LUXCO INC|      81207|Paramount Pepperm...|  12|            1000|             4.28|               6.42|           3|       19.26|               3.0|               0.79|
+|        INV-33189000004|2021-01-04|        3920|Smokin' Joe's #11...|1606 Camanche Ave|        Clinton| 52732.0|POINT (-90.204748...|           23|CLINTON|1032100.0|     Imported Vodkas|        370.0|PERNOD RICARD USA|      34003|Absolut Swedish V...|  24|             200|             2.99|               4.49|           2|        8.98|               0.4|                0.1|
+|        INV-33175800062|2021-01-04|        5092|Kum & Go #3035 / ...|    7265 Vista Dr|West Des Moines| 50265.0|POINT (-93.807839...|           77|   POLK|1032100.0|     Imported Vodkas|        370.0|PERNOD RICARD USA|      34001|Absolut Swedish V...|  10|              50|             7.92|              11.88|           4|       47.52|               0.2|               0.05|
+|        INV-33187700026|2021-01-04|        5106|Randy's Neighborh...|     622 10th  St|         DeWitt| 52742.0|POINT (-90.540132...|           23|CLINTON|1032200.0|Imported Flavored...|        370.0|PERNOD RICARD USA|      64011|Absolut Juice Edi...|   6|             750|             9.99|              14.99|           1|       14.99|              0.75|               0.19|
++-----------------------+----------+------------+--------------------+-----------------+---------------+--------+--------------------+-------------+-------+---------+--------------------+-------------+-----------------+-----------+--------------------+----+----------------+-----------------+-------------------+------------+------------+------------------+-------------------+
+only showing top 5 rows
+
+root
+ |-- invoice_and_item_number: string (nullable = true)
+ |-- date: date (nullable = true)
+ |-- store_number: integer (nullable = true)
+ |-- store_name: string (nullable = true)
+ |-- address: string (nullable = true)
+ |-- city: string (nullable = true)
+ |-- zip_code: double (nullable = true)
+ |-- store_location: string (nullable = true)
+ |-- county_number: integer (nullable = true)
+ |-- county: string (nullable = true)
+ |-- category: double (nullable = true)
+ |-- category_name: string (nullable = true)
+ |-- vendor_number: double (nullable = true)
+ |-- vendor_name: string (nullable = true)
+ |-- item_number: integer (nullable = true)
+ |-- item_description: string (nullable = true)
+ |-- pack: integer (nullable = true)
+ |-- bottle_volume_ml: integer (nullable = true)
+ |-- state_bottle_cost: double (nullable = true)
+ |-- state_bottle_retail: double (nullable = true)
+ |-- bottles_sold: integer (nullable = true)
+ |-- sale_dollars: double (nullable = true)
+ |-- volume_sold_liters: double (nullable = true)
+ |-- volume_sold_gallons: double (nullable = true)
+
+2025-03-18 05:13:37,713 - INFO - Good Records Schema:
+None
+2025-03-18 05:14:07,278 - INFO - Good Records Count: 2474972                    
+2025-03-18 05:14:07,311 - INFO - Checking if table public.iowa_liquor_sales exists in PostgreSQL.
+2025-03-18 05:14:31,896 - INFO - Writing 2474972 records to PostgreSQL table: public.iowa_liquor_sales
+2025-03-18 05:16:14,116 - INFO - Good records successfully written to PostgreSQL!
+2025-03-18 05:16:14,303 - INFO - Closing down clientserver connection
+
+
+SAMPLE OUTPUT OBTAINED IN THE TABLE IN POSTGRES DATABASE
+ INV-33188100001         | 2021-01-04 |         5682 | Ambysure Inc / Clinton                     | 1641 S Bluff Blvd    | Clinton      |    52732 | POINT (-90.225022 41.833351)          |            23 | CLINTON    |  1052100 | Imported Brandies  |           389 | REMY COINTREAU USA INC |       49189 | Remy Martin VSOP                      |   24 |              200 |              6.86 |               10.29 |           24 |       246.96 |                4.8 |                1.26
+ INV-33193800005         | 2021-01-04 |         5687 | Casey's General Store #3756 / Cedar Rapids | 4560 16th Ave SW     | Cedar Rapids |    52404 | POINT (-91.729434 41.963815000000004) |            57 | LINN       |  1031100 | American Vodkas    |           260 | DIAGEO AMERICAS        |       37994 | Smirnoff 80prf                        |   24 |              375 |              4.75 |                7.13 |           24 |       171.12 |                  9 |                2.37
+ INV-33177200002         | 2021-01-04 |         4853 | Kum & Go #62 / Johnston                    | 6130 NW 86th St      | Johnston     |    50131 | POINT (-93.736534 41.67184)           |            77 | POLK       |  1031100 | American Vodkas    |           301 | FIFTH GENERATION INC   |       38178 | Titos Handmade Vodka                  |    6 |             1750 |                19 |                28.5 |            4 |          114 |                  7 |                1.84
+ INV-33181100102         | 2021-01-04 |         2670 | Hy-Vee Food Store / Coralville             | 2004 8th  St         | Coralville   |    52241 | POINT (-91.591868 41.682337000000004) |            52 | JOHNSON    |  1012100 | Canadian Whiskies  |           260 | DIAGEO AMERICAS        |       11298 | Crown Royal                           |    6 |             1750 |             31.99 |               47.99 |            6 |       287.94 |               10.5 |                2.77
+ INV-33169700086         | 2021-01-04 |         2527 | Hy-Vee Food Store #5 / Des Moines          | 1107 SE Army Post Rd | Des Moines   |    50315 | POINT (-93.602372 41.526289)          |            77 | POLK       |  1062200 | White Rum          |            35 | BACARDI USA INC        |       43124 | Bacardi Superior                      |   24 |              375 |               4.5 |                6.75 |           24 |          162 |                  9 |                2.37
+ INV-33195100013         | 2021-01-04 |         4536 | Casey's General Store #2420 / Dubuque      | 2699 Rockdale        | Dubuque      |    52003 | POINT (-90.678368 42.455083)          |            31 | DUBUQUE    |  1031100 | American Vodkas    |           434 | LUXCO INC              |       36308 | Hawkeye Vodka                         |    6 |             1750 |              7.17 |               10.76 |            6 |        64.56 |               10.5 |                2.77
+ INV-33179300028         | 2021-01-04 |         4310 | Fareway Stores #502 / Cherokee             | 205 West Bluff St    | Cherokee     |    51012 | POINT (-95.551866 42.75508)           |            18 | CHEROKEE   |  1012200 | Scotch Whiskies    |            35 | BACARDI USA INC        |        4866 | Dewars White Label Scotch             |   12 |              750 |              13.5 |               20.25 |            1 |        20.25 |               0.75 |                0.19
+ INV-33174100005         | 2021-01-04 |         4594 | Quik Trip #554 / SW 63rd DM                | 901 SW 63rd St       | Des Moines   |    50312 | POINT (-93.703165 41.569715)          |            77 | POLK       |  1031100 | American Vodkas    |           260 | DIAGEO AMERICAS        |       37996 | Smirnoff 80prf                        |   12 |              750 |              8.25 |               12.38 |            2 |        24.76 |                1.5 |                0.39
+ INV-33179000031         | 2021-01-04 |         6060 | A to Z Liquor / Cherokee                   | 114 S 2nd St         | Cherokee     |    51012 | POINT (-95.55132 42.749013)           |            18 | CHEROKEE   |  1081600 | Whiskey Liqueur    |           421 | SAZERAC COMPANY  INC   |       65013 | Fireball Cinnamon Whiskey 50ml Sleeve |   12 |               50 |               4.3 |                6.45 |           12 |         77.4 |                0.6 |                0.15
+(10 rows)
