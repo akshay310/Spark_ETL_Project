@@ -1,0 +1,97 @@
+pytest logs
+
+(spark_ikart_env) akshay@LAPTOP-OTII9OR8:~$ pytest project/test_etl.py -v -s
+====================================================== test session starts ======================================================
+platform linux -- Python 3.12.3, pytest-8.3.5, pluggy-1.5.0 -- /home/akshay/spark_ikart_env/bin/python3
+cachedir: .pytest_cache
+rootdir: /home/akshay
+plugins: anyio-4.9.0
+collected 4 items                                                                                                               
+
+project/test_etl.py::test_load_data 25/03/18 11:02:40 WARN Utils: Your hostname, LAPTOP-OTII9OR8 resolves to a loopback address: 127.0.1.1; using 172.31.193.239 instead (on interface eth0)
+25/03/18 11:02:40 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+25/03/18 11:02:42 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+25/03/18 11:02:44 WARN SparkSession: Using an existing Spark session; only runtime SQL configurations will take effect.
+PASSED                     
+
+
+04:52pm on 18 March 2025
+(spark_ikart_env) akshay@LAPTOP-OTII9OR8:~$ pytest project/test_etl.py -v -s
+================================================= test session starts ==================================================
+platform linux -- Python 3.12.3, pytest-8.3.5, pluggy-1.5.0 -- /home/akshay/spark_ikart_env/bin/python3
+cachedir: .pytest_cache
+rootdir: /home/akshay
+plugins: anyio-4.9.0
+collected 4 items
+
+project/test_etl.py::test_load_data 25/03/18 11:18:59 WARN Utils: Your hostname, LAPTOP-OTII9OR8 resolves to a loopback address: 127.0.1.1; using 172.24.162.116 instead (on interface eth0)
+25/03/18 11:18:59 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+25/03/18 11:19:01 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+25/03/18 11:19:04 WARN SparkSession: Using an existing Spark session; only runtime SQL configurations will take effect.
+PASSED
+PASSED
+PASSED
+
+
+07:27pm on 18 March 2025
+(spark_ikart_env) akshay@LAPTOP-OTII9OR8:~/project$ pytest test_etl.py -v -s
+====================================================== test session starts ======================================================
+platform linux -- Python 3.12.3, pytest-8.3.5, pluggy-1.5.0 -- /home/akshay/spark_ikart_env/bin/python3
+cachedir: .pytest_cache
+rootdir: /home/akshay/project
+plugins: anyio-4.9.0
+collected 4 items                                                                                                               
+
+test_etl.py::test_load_data 25/03/18 13:51:22 WARN Utils: Your hostname, LAPTOP-OTII9OR8 resolves to a loopback address: 127.0.1.1; using 172.20.69.108 instead (on interface eth0)
+25/03/18 13:51:22 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
+25/03/18 13:51:24 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+25/03/18 13:51:26 WARN SparkSession: Using an existing Spark session; only runtime SQL configurations will take effect.
+PASSED                                                                          
+PASSED                                                                          
+PASSED                                                                          
+root                                                                            
+ |-- invoice_and_item_number: string (nullable = true)
+ |-- date: date (nullable = true)
+ |-- store_number: integer (nullable = true)
+ |-- store_name: string (nullable = true)
+ |-- address: string (nullable = true)
+ |-- city: string (nullable = true)
+ |-- zip_code: double (nullable = true)
+ |-- store_location: string (nullable = true)
+ |-- county_number: integer (nullable = true)
+ |-- county: string (nullable = true)
+ |-- category: double (nullable = true)
+ |-- category_name: string (nullable = true)
+ |-- vendor_number: double (nullable = true)
+ |-- vendor_name: string (nullable = true)
+ |-- item_number: integer (nullable = true)
+ |-- item_description: string (nullable = true)
+ |-- pack: integer (nullable = true)
+ |-- bottle_volume_ml: integer (nullable = true)
+ |-- state_bottle_cost: double (nullable = true)
+ |-- state_bottle_retail: double (nullable = true)
+ |-- bottles_sold: integer (nullable = true)
+ |-- sale_dollars: double (nullable = true)
+ |-- volume_sold_liters: double (nullable = true)
+ |-- volume_sold_gallons: double (nullable = true)
+
+PASSED                                                                          
+
+======================================================= warnings summary ========================================================
+../spark_ikart_env/lib/python3.12/site-packages/great_expectations/data_context/types/base.py:1635
+  /home/akshay/spark_ikart_env/lib/python3.12/site-packages/great_expectations/data_context/types/base.py:1635: ChangedInMarshmallow4Warning: `Number` field should not be instantiated. Use `Integer`, `Float`, or `Decimal` instead.
+    config_version = fields.Number(
+
+../spark_ikart_env/lib/python3.12/site-packages/great_expectations/data_context/types/base.py:2687
+  /home/akshay/spark_ikart_env/lib/python3.12/site-packages/great_expectations/data_context/types/base.py:2687: ChangedInMarshmallow4Warning: `Number` field should not be instantiated. Use `Integer`, `Float`, or `Decimal` instead.
+    config_version = fields.Number(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================================== 4 passed, 2 warnings in 318.57s (0:05:18) ===========================================
+(spark_ikart_env) akshay@LAPTOP-OTII9OR8:~/project$                                                      

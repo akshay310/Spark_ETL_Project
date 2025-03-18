@@ -1,0 +1,55 @@
+(spark_ikart_env) akshay@LAPTOP-OTII9OR8:~/project$ python main.py
+2025-03-18 14:03:26,754 - INFO - ✅ Successfully loaded database configuration.
+2025-03-18 14:03:31,600 - INFO - Detected Encoding: ascii
+2025-03-18 14:03:31,600 - INFO - Detected Delimiter: ,
+25/03/18 14:03:33 WARN Utils: Your hostname, LAPTOP-OTII9OR8 resolves to a loopback address: 127.0.1.1; using 172.20.69.108 instead (on interface eth0)
+25/03/18 14:03:33 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
+25/03/18 14:03:36 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+2025-03-18 14:03:38,490 - INFO - Spark session created successfully.
+2025-03-18 14:03:52,167 - INFO - Encoding found : ascii                         
+2025-03-18 14:03:52,177 - INFO - Delimiter found : ,
+2025-03-18 14:03:52,177 - INFO - Data loaded successfully.
+2025-03-18 14:04:12,513 - INFO - Row count: 2805307                             
+2025-03-18 14:04:28,900 - WARNING - check_store_location check FAILED.          
+2025-03-18 14:04:28,901 - INFO - check_unique_invoice check PASSED.
+2025-03-18 14:04:28,901 - INFO - check_date_format check PASSED.
+2025-03-18 14:04:28,901 - INFO - check_sale_dollars check PASSED.
+2025-03-18 14:04:28,901 - INFO - check_bottles_sold check PASSED.
+2025-03-18 14:04:56,741 - INFO - Bad records found. Good: 2474972 | Bad: 330335 
+2025-03-18 14:04:57,230 - INFO - Writing 330335 records to parquet file at /home/akshay/bad_records.parquet
+2025-03-18 14:05:04,128 - INFO - Bad records successfully written to: /home/akshay/bad_records.parquet
+root
+ |-- invoice_and_item_number: string (nullable = true)
+ |-- date: date (nullable = true)
+ |-- store_number: integer (nullable = true)
+ |-- store_name: string (nullable = true)
+ |-- address: string (nullable = true)
+ |-- city: string (nullable = true)
+ |-- zip_code: double (nullable = true)
+ |-- store_location: string (nullable = true)
+ |-- county_number: integer (nullable = true)
+ |-- county: string (nullable = true)
+ |-- category: double (nullable = true)
+ |-- category_name: string (nullable = true)
+ |-- vendor_number: double (nullable = true)
+ |-- vendor_name: string (nullable = true)
+ |-- item_number: integer (nullable = true)
+ |-- item_description: string (nullable = true)
+ |-- pack: integer (nullable = true)
+ |-- bottle_volume_ml: integer (nullable = true)
+ |-- state_bottle_cost: double (nullable = true)
+ |-- state_bottle_retail: double (nullable = true)
+ |-- bottles_sold: integer (nullable = true)
+ |-- sale_dollars: double (nullable = true)
+ |-- volume_sold_liters: double (nullable = true)
+ |-- volume_sold_gallons: double (nullable = true)
+
+2025-03-18 14:05:04,143 - INFO - Good Records Schema:
+None
+2025-03-18 14:05:18,928 - INFO - Good Records Count: 2474972                    
+2025-03-18 14:05:18,940 - INFO - Checking if table public.iowa_liquor_sales exists in PostgreSQL.
+2025-03-18 14:05:40,755 - INFO - Writing 2474972 records to PostgreSQL table: public.iowa_liquor_sales
+2025-03-18 14:06:57,129 - INFO - Good records successfully written to PostgreSQL!
+2025-03-18 14:06:57,329 - INFO - Closing down clientserver connection

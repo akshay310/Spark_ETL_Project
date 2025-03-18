@@ -1,0 +1,79 @@
+(spark_ikart_env) akshay@LAPTOP-OTII9OR8:~/project$ python main.py
+INFO:root:Successfully loaded database configuration.
+INFO:root:Detected Encoding: ascii
+INFO:root:Detected Delimiter: ,
+25/03/18 14:55:40 WARN Utils: Your hostname, LAPTOP-OTII9OR8 resolves to a loopback address: 127.0.1.1; using 172.20.69.108 instead (on interface eth0)
+25/03/18 14:55:40 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
+25/03/18 14:55:43 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+INFO:root:Spark session created successfully.
+INFO:root:Encoding found : ascii                                                
+INFO:root:Delimiter found : ,
+INFO:root:Data loaded successfully.
+INFO:root:Row count: 2805307                                                    
+WARNING:root:check_store_location check FAILED.                                 
+INFO:root:check_unique_invoice check PASSED.
+INFO:root:check_date_format check PASSED.
+INFO:root:check_sale_dollars check PASSED.
+INFO:root:check_bottles_sold check PASSED.
+INFO:root:Bad records found. Good: 2474972 | Bad: 330335                        
+INFO:root:Writing 330335 records to parquet file at /home/akshay/bad_records.parquet
+INFO:root:Bad records successfully written to: /home/akshay/bad_records.parquet 
+root
+ |-- invoice_and_item_number: string (nullable = true)
+ |-- date: date (nullable = true)
+ |-- store_number: integer (nullable = true)
+ |-- store_name: string (nullable = true)
+ |-- address: string (nullable = true)
+ |-- city: string (nullable = true)
+ |-- zip_code: double (nullable = true)
+ |-- store_location: string (nullable = true)
+ |-- county_number: integer (nullable = true)
+ |-- county: string (nullable = true)
+ |-- category: double (nullable = true)
+ |-- category_name: string (nullable = true)
+ |-- vendor_number: double (nullable = true)
+ |-- vendor_name: string (nullable = true)
+ |-- item_number: integer (nullable = true)
+ |-- item_description: string (nullable = true)
+ |-- pack: integer (nullable = true)
+ |-- bottle_volume_ml: integer (nullable = true)
+ |-- state_bottle_cost: double (nullable = true)
+ |-- state_bottle_retail: double (nullable = true)
+ |-- bottles_sold: integer (nullable = true)
+ |-- sale_dollars: double (nullable = true)
+ |-- volume_sold_liters: double (nullable = true)
+ |-- volume_sold_gallons: double (nullable = true)
+
+INFO:root:Good Records Schema:
+None
+INFO:root:Good Records Count: 2474972                                           
+INFO:root:Checking if table public.iowa_liquor_sales exists in PostgreSQL.
+INFO:root:Writing 2474972 records to PostgreSQL table: public.iowa_liquor_sales 
+INFO:root:Good records successfully written to PostgreSQL!                      
+INFO:root:ETL pipeline completed successfully!
+INFO:py4j.clientserver:Closing down clientserver connection
+
+
+Sample Output
+
+ invoice_and_item_number |    date    | store_number |               store_name                |         address         |    city     | zip_code |        store_location        | county_number |  county   | category |      category_name      | vendor_number |       vendor_name        | item_number |         item_description         | pack | bottle_volume_ml | state_bottle_cost | state_bottle_retail | bottles_sold | sale_dollars | volume_sold_liters | volume_sold_gallons
+-------------------------+------------+--------------+-----------------------------------------+-------------------------+-------------+----------+------------------------------+---------------+-----------+----------+-------------------------+---------------+--------------------------+-------------+----------------------------------+------+------------------+-------------------+---------------------+--------------+--------------+--------------------+---------------------
+ INV-33189600047         | 2021-01-04 |         5910 | Eldridge Mart                           | 209 E. Le Claire Rd     | Eldridge    |    52748 | POINT (-90.58154 41.654676)  |            82 | SCOTT     |  1011400 | Tennessee Whiskies      |            85 | Brown Forman Corp.       |       86691 | Jack Daniels Tennessee Fire Mini |   12 |               50 |              9.06 |               13.59 |            2 |        27.18 |                0.1 |                0.02
+ INV-33173100028         | 2021-01-04 |         4829 | Central City 2                          | 1501 Michigan Ave       | Des Moines  |    50314 | POINT (-93.613739 41.60572)  |            77 | POLK      |  1031200 | American Flavored Vodka |           260 | DIAGEO AMERICAS          |       77637 | Smirnoff Cherry
+    |   12 |              750 |              8.25 |               12.38 |           12 |       148.56 |                  9 |                2.37
+ INV-33201900019         | 2021-01-04 |         4467 | Kum & Go #438 / Muscatine               | 1429 PARK AVE           | MUSCATINE   |    52761 | POINT (-91.030595 41.441918) |            70 | MUSCATINE |  1012100 | Canadian Whiskies       |           259 | Heaven Hill Brands       |       11788 | Black Velvet
+    |    6 |             1750 |             10.45 |               15.68 |            6 |        94.08 |               10.5 |                2.77
+ INV-33198300003         | 2021-01-04 |         5496 | Dhakals LLC                             | 3108 W Central Park Ave | Davenport   |    52804 | POINT (-90.620282 41.545421) |            82 | SCOTT     |  1011100 | Blended Whiskies        |            65 | Jim Beam Brands          |       27782 | Jim Beam Apple
+    |   24 |              375 |               5.5 |                8.25 |           24 |          198 |                  9 |                2.37
+ INV-33194700025         | 2021-01-04 |         5542 | Casey's General Store #2578 / Maquoketa | 801 E Platt             | Maquoketa   |    52060 | POINT (-90.657171 42.069166) |            49 | JACKSON   |  1062400 | Spiced Rum              |           259 | Heaven Hill Brands       |       43028 | Admiral Nelson Spiced Rum        |    6 |             1750 |             11.55 |               17.33 |            6 |       103.98 |               10.5 |                2.77
+ INV-33189200023         | 2021-01-04 |         5184 | Casey's General Store #3440 / Camanc    | 614, S  Washington Blvd | Camanche    |    52730 | POINT (-90.25591 41.787907)  |            23 | CLINTON   |  1012100 | Canadian Whiskies       |           259 | Heaven Hill Brands       |       11788 | Black Velvet
+    |    6 |             1750 |             10.45 |               15.68 |           12 |       188.16 |                 21 |                5.54
+ INV-33190300021         | 2021-01-04 |         5905 | Aj's Jack & Jill / West Branch          | 115 E Main St           | West Branch |    52358 | POINT (-91.343394 41.671391) |            16 | CEDAR     |  1012100 | Canadian Whiskies       |           259 | Heaven Hill Brands       |       11774 | Black Velvet
+    |   24 |              375 |              3.07 |                4.61 |           24 |       110.64 |                  9 |                2.37
+ INV-33201900011         | 2021-01-04 |         4467 | Kum & Go #438 / Muscatine               | 1429 PARK AVE           | MUSCATINE   |    52761 | POINT (-91.030595 41.441918) |            70 | MUSCATINE |  1011100 | Blended Whiskies        |            65 | Jim Beam Brands          |       27544 | Red Stag Black Cherry            |   12 |              750 |              10.5 |               15.75 |           12 |          189 |                  9 |                2.37
+ INV-33195200051         | 2021-01-04 |         2465 | Sid's Beverage Shop                     | 2727 Dodge St           | Dubuque     |    52003 | POINT (-90.705328 42.491862) |            31 | DUBUQUE   |  1062500 | Flavored Rum            |            35 | BACARDI USA INC          |       43136 | Bacardi Limon
+    |   12 |              750 |              8.26 |               12.39 |            4 |        49.56 |                  3 |                0.79
+ INV-33200600009         | 2021-01-04 |         6092 | A&S Food and Gas / Davenport            | 2365 Rockingham Rd      | Davenport   |    52802 | POINT (-90.612456 41.514587) |            82 | SCOTT     |  1031100 | American Vodkas         |           300 | McCormick Distilling Co. |       36901 | McCormick 80prf Vodka Mini       |    6 |               50 |               4.7 |                7.05 |            6 |         42.3 |                0.3 |                0.07
+(10 rows)
