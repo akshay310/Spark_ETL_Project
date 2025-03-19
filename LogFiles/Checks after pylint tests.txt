@@ -1,0 +1,99 @@
+(spark_ikart_env) akshay@LAPTOP-OTII9OR8:~/project$ python main.py
+INFO:root:Successfully loaded database configuration.
+INFO:root:Detected Encoding: ascii
+INFO:root:Detected Delimiter: ,
+25/03/19 05:47:32 WARN Utils: Your hostname, LAPTOP-OTII9OR8 resolves to a loopback address: 127.0.1.1; using 172.20.69.108 instead (on interface eth0)
+25/03/19 05:47:32 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
+25/03/19 05:47:34 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+INFO:root:Spark session created successfully.
+INFO:root:Encoding found: ascii                                                 
+INFO:root:Delimiter found: ,
+INFO:root:Data loaded successfully.
+INFO:root:Row count: 2805307                                                    
+WARNING:root:check_store_location check FAILED.                                 
+INFO:root:check_unique_invoice check PASSED.
+INFO:root:check_date_format check PASSED.
+INFO:root:check_sale_dollars check PASSED.
+INFO:root:check_bottles_sold check PASSED.
+INFO:root:Bad records found. Good: 2474972 | Bad: 330335                        
+INFO:root:Writing 330335 records to parquet file at /home/akshay/bad_records.parquet
+INFO:root:Bad records successfully written to: /home/akshay/bad_records.parquet 
+INFO:root:Good Records Schema: StructType([StructField('invoice_and_item_number', StringType(), True), StructField('date', DateType(), True), StructField('store_number', IntegerType(), True), StructField('store_name', StringType(), True), StructField('address', StringType(), True), StructField('city', StringType(), True), StructField('zip_code', DoubleType(), True), StructField('store_location', StringType(), True), StructField('county_number', IntegerType(), True), StructField('county', StringType(), True), StructField('category', DoubleType(), True), StructField('category_name', StringType(), True), StructField('vendor_number', DoubleType(), True), StructField('vendor_name', StringType(), True), StructField('item_number', IntegerType(), True), StructField('item_description', StringType(), True), StructField('pack', IntegerType(), True), StructField('bottle_volume_ml', IntegerType(), True), StructField('state_bottle_cost', DoubleType(), True), StructField('state_bottle_retail', DoubleType(), True), StructField('bottles_sold', IntegerType(), True), StructField('sale_dollars', DoubleType(), True), StructField('volume_sold_liters', DoubleType(), True), StructField('volume_sold_gallons', DoubleType(), True)])
+INFO:root:Good Records Count: 2474972                                           
+INFO:root:Checking if table public.iowa_liquor_sales exists in PostgreSQL.
+INFO:root:Writing 2474972 records to PostgreSQL table: public.iowa_liquor_sales
+INFO:root:Good records successfully written to PostgreSQL!                      
+INFO:root:ETL pipeline completed successfully!
+INFO:py4j.clientserver:Closing down clientserver connection
+(spark_ikart_env) akshay@LAPTOP-OTII9OR8:~/project$ ruff check
+All checks passed!
+(spark_ikart_env) akshay@LAPTOP-OTII9OR8:~/project$ pytest test_etl.py -v -s
+====================================================== test session starts ======================================================
+platform linux -- Python 3.12.3, pytest-8.3.5, pluggy-1.5.0 -- /home/akshay/spark_ikart_env/bin/python3
+cachedir: .pytest_cache
+rootdir: /home/akshay/project
+plugins: anyio-4.9.0
+collected 4 items                                                                                                               
+
+test_etl.py::test_load_data 25/03/19 05:50:10 WARN Utils: Your hostname, LAPTOP-OTII9OR8 resolves to a loopback address: 127.0.1.1; using 172.20.69.108 instead (on interface eth0)
+25/03/19 05:50:10 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
+25/03/19 05:50:12 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+25/03/19 05:50:15 WARN SparkSession: Using an existing Spark session; only runtime SQL configurations will take effect.
+PASSED                                                                          
+PASSED                                                                          
+PASSED                                                                          
+PASSED                                                                          
+
+======================================================= warnings summary ========================================================
+../spark_ikart_env/lib/python3.12/site-packages/great_expectations/data_context/types/base.py:1635
+  /home/akshay/spark_ikart_env/lib/python3.12/site-packages/great_expectations/data_context/types/base.py:1635: ChangedInMarshmallow4Warning: `Number` field should not be instantiated. Use `Integer`, `Float`, or `Decimal` instead.
+    config_version = fields.Number(
+
+../spark_ikart_env/lib/python3.12/site-packages/great_expectations/data_context/types/base.py:2687
+  /home/akshay/spark_ikart_env/lib/python3.12/site-packages/great_expectations/data_context/types/base.py:2687: ChangedInMarshmallow4Warning: `Number` field should not be instantiated. Use `Integer`, `Float`, or `Decimal` instead.
+    config_version = fields.Number(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================================== 4 passed, 2 warnings in 270.78s (0:04:30) ===========================================
+(spark_ikart_env) akshay@LAPTOP-OTII9OR8:~/project$ pylint load_data.py
+
+--------------------------------------------------------------------
+Your code has been rated at 10.00/10 (previous run: 10.00/10, +0.00)
+
+(spark_ikart_env) akshay@LAPTOP-OTII9OR8:~/project$ pylint quality_check.py
+************* Module quality_check
+quality_check.py:24:0: C0301: Line too long (128/100) (line-too-long)
+quality_check.py:25:0: C0301: Line too long (144/100) (line-too-long)
+quality_check.py:26:0: C0301: Line too long (154/100) (line-too-long)
+quality_check.py:27:0: C0301: Line too long (123/100) (line-too-long)
+quality_check.py:28:0: C0301: Line too long (123/100) (line-too-long)
+quality_check.py:46:0: C0301: Line too long (114/100) (line-too-long)
+quality_check.py:35:15: E1126: Sequence index is not an int, slice, or instance with __index__ (invalid-sequence-index)
+
+------------------------------------------------------------------
+Your code has been rated at 7.03/10 (previous run: 7.03/10, +0.00)
+
+
+(spark_ikart_env) akshay@LAPTOP-OTII9OR8:~/project$ pylint write_data.py
+
+-------------------------------------------------------------------
+Your code has been rated at 10.00/10 (previous run: 9.74/10, +0.26)
+
+(spark_ikart_env) akshay@LAPTOP-OTII9OR8:~/project$ pylint main.py
+************* Module main
+main.py:35:11: W0718: Catching too general exception Exception (broad-exception-caught)
+
+------------------------------------------------------------------
+Your code has been rated at 9.44/10 (previous run: 9.44/10, +0.00)
+
+
+(spark_ikart_env) akshay@LAPTOP-OTII9OR8:~/project$ pylint config.py
+
+-------------------------------------------------------------------
+Your code has been rated at 10.00/10 (previous run: 9.23/10, +0.77)
+
+(spark_ikart_env) akshay@LAPTOP-OTII9OR8:~/project$ 
