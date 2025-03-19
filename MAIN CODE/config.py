@@ -1,10 +1,10 @@
 """
 Configuration file for PostgreSQL connection.
 """
-
+import sys
 import os
-from dotenv import load_dotenv
 import logging
+from dotenv import load_dotenv
 
 # Load environment variables from .env file
 load_dotenv()
@@ -20,7 +20,7 @@ DB_PASSWORD = os.getenv("DB_PASSWORD")
 # Ensure all required variables are loaded
 if not all([DB_URL, DB_USER, DB_PASSWORD]):
     logging.error("Missing required environment variables. Check your .env file.")
-    exit(1)
+    sys.exit(1)
 
 DB_PROPERTIES = {
     "user": DB_USER,
