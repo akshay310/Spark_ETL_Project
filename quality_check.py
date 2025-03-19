@@ -21,11 +21,16 @@ def validate_data(df: DataFrame):
 
         # Defining expectations
         expectations = {
-            "check_store_location": ("store_location IS NOT NULL", df_ge.expect_column_values_to_not_be_null("store_location")),
-            "check_unique_invoice": ("invoice_and_item_number IS NOT NULL", df_ge.expect_column_values_to_be_unique("invoice_and_item_number")),
-            "check_date_format": ("date RLIKE '^[0-9]{4}-[0-9]{2}-[0-9]{2}$'", df_ge.expect_column_values_to_match_regex("date", r"^\d{4}-\d{2}-\d{2}$")),
-            "check_sale_dollars": ("sale_dollars >= 0", df_ge.expect_column_values_to_be_between("sale_dollars", 0, None)),
-            "check_bottles_sold": ("bottles_sold >= 1", df_ge.expect_column_values_to_be_between("bottles_sold", 1, None)),
+            "check_store_location": ("store_location IS NOT NULL", 
+            df_ge.expect_column_values_to_not_be_null("store_location")),
+            "check_unique_invoice": ("invoice_and_item_number IS NOT NULL", 
+            df_ge.expect_column_values_to_be_unique("invoice_and_item_number")),
+            "check_date_format": ("date RLIKE '^[0-9]{4}-[0-9]{2}-[0-9]{2}$'", 
+            df_ge.expect_column_values_to_match_regex("date", r"^\d{4}-\d{2}-\d{2}$")),
+            "check_sale_dollars": ("sale_dollars >= 0", 
+            df_ge.expect_column_values_to_be_between("sale_dollars", 0, None)),
+            "check_bottles_sold": ("bottles_sold >= 1", 
+            df_ge.expect_column_values_to_be_between("bottles_sold", 1, None)),
         }
 
         failed_conditions = []
