@@ -13,24 +13,24 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(
 if __name__ == "__main__":
     try:
         # Define file paths
-        file_path = "/home/akshay/Iowa_Liquor_Sales.csv.csv"
-        parquet_output_path = "/home/akshay/bad_records.parquet"
-        postgres_table_name = "public.iowa_liquor_sales"
+        FILE_PATH = "/home/akshay/Iowa_Liquor_Sales.csv.csv"
+        PARQUET_OUTPUT_PATH = "/home/akshay/bad_records.parquet"
+        POSTGRES_TABLE_NAME = "public.iowa_liquor_sales"
 
         # Load data and retrieve the SparkSession
-        df, spark = load_data(file_path)
+        df, spark = load_data(FILE_PATH)
 
         # Validate and separate records
         good_records_df, bad_records_df = validate_data(df)
 
         # Write bad records to Parquet file
         if bad_records_df:
-            write_to_parquet(bad_records_df, output_path=parquet_output_path)
+            write_to_parquet(bad_records_df, output_path=PARQUET_OUTPUT_PATH)
 
         # Write good records to PostgreSQL
-        write_to_postgres(good_records_df, table_name=postgres_table_name)
+        write_to_postgres(good_records_df, table_name=POSTGRES_TABLE_NAME)
 
         logging.info("ETL pipeline completed successfully!")
 
     except Exception as e:
-        logging.error(f"ETL pipeline failed: {str(e)}")
+        logging.error("ETL pipeline failed: %s", str(e))
