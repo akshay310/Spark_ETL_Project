@@ -1,11 +1,10 @@
 """
-Module to perform data quality checks using Great Expectations and push the bad records to a parquet file.
+Module to perform data quality checks using Great Expectations.
 """
-
-import great_expectations as ge
 import logging
+import great_expectations as ge
 from pyspark.sql import DataFrame
-from load_data import load_data  
+from load_data import load_data
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
@@ -34,9 +33,9 @@ def validate_data(df: DataFrame):
         # Logging each expectation result
         for check_name, (condition, result) in expectations.items():
             if result["success"]:
-                logging.info(f"{check_name} check PASSED.")
+                logging.info("%s check PASSED.", check_name)
             else:
-                logging.warning(f"{check_name} check FAILED.")
+                logging.warning("%s check FAILED.", check_name)
                 failed_conditions.append(condition)
 
         # Separate good and bad records
@@ -44,7 +43,7 @@ def validate_data(df: DataFrame):
             filter_condition = " OR ".join(f"NOT ({condition})" for condition in failed_conditions)
             bad_records_df = df.filter(filter_condition)
             good_records_df = df.subtract(bad_records_df)
-            logging.info(f"Bad records found. Good: {good_records_df.count()} | Bad: {bad_records_df.count()}")
+            logging.info("Bad records found. Good: %s | Bad: %s", good_records_df.count(), bad_records_df.count())
         else:
             good_records_df = df
             bad_records_df = None
@@ -52,26 +51,25 @@ def validate_data(df: DataFrame):
 
         return good_records_df, bad_records_df
 
-    except Exception as e:
-        logging.error(f"Data validation failed: {str(e)}")
+    except Exception as error:
+        logging.error("Data validation failed: %s", str(error))
         raise
 
 if __name__ == "__main__":
-    file_path = "/home/akshay/Iowa_Liquor_Sales.csv.csv"
-    
-    #Correctly unpack the DataFrame and SparkSession
-    df, spark = load_data(file_path)
+    FILE_PATH = "/home/akshay/Iowa_Liquor_Sales.csv"
+
+    # Correctly unpack the DataFrame and SparkSession
+    DATA_DF, SPARK_SESSION = load_data(FILE_PATH)
 
     # Run validation
-    good_records_df, bad_records_df = validate_data(df)
+    GOOD_RECORDS_DF, BAD_RECORDS_DF = validate_data(DATA_DF)
 
     # Show sample records
-    good_records_df.show(5)
-    
-    if bad_records_df:
-        bad_records_df.show(5)
+    GOOD_RECORDS_DF.show(5)
+    if BAD_RECORDS_DF:
+        BAD_RECORDS_DF.show(5)
 
-        #Save bad records to a single Parquet file
-        bad_records_df.coalesce(1).write.mode("overwrite").parquet("/home/akshay/bad_records.parquet")
+        # Save bad records to a single Parquet file
+        BAD_RECORDS_DF.write.mode("overwrite").parquet("/home/akshay/bad_records.parquet")
         logging.info("Bad records successfully written to Parquet.")
         logging.info("Good records are ready to be pushed to PostgreSQL database")
